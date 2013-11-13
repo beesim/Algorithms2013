@@ -112,7 +112,7 @@ int sl_delete(skiplist* S, int k)
 		temp = temp->down;
 	}
 	node* pre_p = temp;
-	
+
 	temp = S->top;
 	while (1) {
 		while (temp->right->key < k) {
@@ -158,43 +158,91 @@ int sl_delete(skiplist* S, int k)
 
 void sl_print(skiplist* S)
 {
+	if (S->top == NULL) {
+		return;
+	}
+	node* Btm = S->top;
+	while (Btm->down != NULL) {
+		Btm = Btm->down;
+	}
 	node* s = S->top;
 	int i = g_level;
+	int j = 0;
+	printf("GLOBAL level: %d\n", g_level);
 	while (i > 0) {
+		node* pB = Btm;
 		node* p = s;
-		printf("Level %d:\t", i);
+//		printf("<L%2d>\t", i);
 		while (p != NULL) {
-			printf("%2d->", p->key);
-			p = p->right;
+			if (p->key == pB->key) {
+				if (j == 0) {
+					printf(">%2d-", p->key);
+				} else {
+					if (i != 1) {
+						printf (" \\|/");
+					}
+				}
+				p = p->right;
+			} else {
+				if (j == 0) {
+					printf ("----");
+				} else {
+					printf ("    ");
+				}
+			}
+			pB = pB->right;
 		}
 		printf("\n");
-		s = s->down;
-		i--;
+		if (j == 1) {
+			s = s->down;
+			i--;
+		}
+		j = (j + 1) % 2;
 	}
-	printf("\n");
+
+
+		/*
+		   node* s = S->top;
+		   int i = g_level;
+		   while (i > 0) {
+		   node* p = s;
+		   printf("Level %d:\t", i);
+		   while (p != NULL) {
+		   printf("%2d->", p->key);
+		   p = p->right;
+		   }
+		   printf("\n");
+		   s = s->down;
+		   i--;
+		   }
+		   printf("\n");
+		   */
 }
 
 
 
-int main()
-{
-	skiplist* S = (skiplist*)malloc(sizeof(skiplist));
-	node nodes[2] = {
-		{-1, &nodes[1], NULL},
-		{1000000, NULL, NULL}
-	};
-	S->top = &nodes[0];
-	
-	int i;
-	printf("Start...\n");
-	scanf("%d", &i);
-	while (i != -1) {
-		sl_insert(S, i);
-		sl_print(S);
+	int main()
+	{
+		skiplist* S = (skiplist*)malloc(sizeof(skiplist));
+		node nodes[2] = {
+			{-1, &nodes[1], NULL},
+			{1000000, NULL, NULL}
+		};
+		S->top = &nodes[0];
+
+		int i;
+		printf("Start...\n");
 		scanf("%d", &i);
+		while (i != -1) {
+			if (i == -2) {
+				sl_print(S);
+			} else {
+				sl_insert(S, i);
+			}
+			scanf("%d", &i);
+		}
+		delete(S);
+		printf("End of program!\n");
+		return 0;
 	}
-	delete(S);
-	printf("End of program!\n");
-	return 0;
-}
 

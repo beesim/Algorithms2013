@@ -1,0 +1,10 @@
+/*
+	RD is a program to generate random numbers, ranging from 0-1000
+	The first agument is used as the number of the random numbers to produce.
+	It is quite simple, nothing else to mention.
+	
+	Simply, we can use RD in the following way:
+		$> ./rd 100 > a.txt
+		This input is to produce 100 random numbers, and put them into the a.txt file.
+*/
+
