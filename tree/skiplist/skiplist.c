@@ -50,7 +50,6 @@ int get_level()
 int sl_insert(skiplist* S, int k)
 {
 	int level = get_level();
-	printf ("L%d\n", level);
 	node* new_nodes = (node*)malloc((level + 1) * sizeof(node));
 
 	if (level > g_level) {
@@ -206,7 +205,6 @@ void sl_print(skiplist* S)
 int main()
 {
 	srand((int)time(NULL)); 
-//	srand(1); 
 	skiplist* S = (skiplist*)malloc(sizeof(skiplist));
 	node nodes[2] = {
 		{-1, &nodes[1], NULL},
