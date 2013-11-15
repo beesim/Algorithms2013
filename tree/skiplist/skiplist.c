@@ -37,7 +37,6 @@ node* sl_search(skiplist* S, int x)
 int get_level()
 {
 	int k = 1;
-	srand((int)time(NULL)); 
 	while (rand()%2) {
 		k++;
 		if (k > g_level) {
@@ -51,6 +50,7 @@ int get_level()
 int sl_insert(skiplist* S, int k)
 {
 	int level = get_level();
+	printf ("L%d\n", level);
 	node* new_nodes = (node*)malloc((level + 1) * sizeof(node));
 
 	if (level > g_level) {
@@ -172,7 +172,7 @@ void sl_print(skiplist* S)
 	while (i > 0) {
 		node* pB = Btm;
 		node* p = s;
-//		printf("<L%2d>\t", i);
+		//		printf("<L%2d>\t", i);
 		while (p != NULL) {
 			if (p->key == pB->key) {
 				if (j == 0) {
@@ -199,50 +199,34 @@ void sl_print(skiplist* S)
 		}
 		j = (j + 1) % 2;
 	}
-
-
-		/*
-		   node* s = S->top;
-		   int i = g_level;
-		   while (i > 0) {
-		   node* p = s;
-		   printf("Level %d:\t", i);
-		   while (p != NULL) {
-		   printf("%2d->", p->key);
-		   p = p->right;
-		   }
-		   printf("\n");
-		   s = s->down;
-		   i--;
-		   }
-		   printf("\n");
-		   */
 }
 
 
 
-	int main()
-	{
-		skiplist* S = (skiplist*)malloc(sizeof(skiplist));
-		node nodes[2] = {
-			{-1, &nodes[1], NULL},
-			{1000000, NULL, NULL}
-		};
-		S->top = &nodes[0];
+int main()
+{
+	srand((int)time(NULL)); 
+//	srand(1); 
+	skiplist* S = (skiplist*)malloc(sizeof(skiplist));
+	node nodes[2] = {
+		{-1, &nodes[1], NULL},
+		{1000000, NULL, NULL}
+	};
+	S->top = &nodes[0];
 
-		int i;
-		printf("Start...\n");
-		scanf("%d", &i);
-		while (i != -1) {
-			if (i == -2) {
-				sl_print(S);
-			} else {
-				sl_insert(S, i);
-			}
-			scanf("%d", &i);
+	int i;
+	printf("Start...\n");
+	scanf("%d", &i);
+	while (i != -1) {
+		if (i == -2) {
+			sl_print(S);
+		} else {
+			sl_insert(S, i);
 		}
-		delete(S);
-		printf("End of program!\n");
-		return 0;
+		scanf("%d", &i);
 	}
+	delete(S);
+	printf("End of program!\n");
+	return 0;
+}
 
