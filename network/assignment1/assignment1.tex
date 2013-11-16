@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+\title{Assignment1}
+\author{Philip J.Y. Lee(Li Jiaying)}
+\maketitle
+
+\section{Freeflow}
+Read the attached paper. Answer the following questions.
+\subsection{}
+{Look up what the company Akamai does. Discuss the design objectives of Freeflow.}
+\\
+    Solution:
+      \begin{enumerate}
+      \item[-]Akamai has set up many servers around the world to server customers worldwide. It collect the network information about the web traffic and conditions to find optimizated servers to serve customers in order to get a good user experience. It is also very sobust that can tolerant fault and other possible demage.
+      \item[-]The design objectives of Freeflow is to help people access the network more efficient, and it also provide services to help companies focus their attention on the product instead of internet problem. It also would help improve network condition.
+\end{enumerate}
+\subsection{}
+{How does Freeflow makes use of design features of normal DNS as discussed in class?}
+\\
+    Solution:
+      \begin{enumerate}
+      \item[-]Like DNS, people use Freeflow to find destination through indirecting by Freeflow servers. 
+      \item[-]Freeflow use the hierachy structure to offer efficient search for customers.
+      \item[-]The end user can cache the information for use in a near future. 
+      \item[-]It can provide end-users with more than one server to make a balance for the servers' burden. 
+\end{enumerate}
+\subsection{}
+{How does Freeflow go beyond the normal DNS features to provide additional utility to users?}
+\\
+    Solution:
+      \begin{enumerate}
+      \item[-]It uses the physical conditions of the network, that means it could provide the information depend on its customers' location and their network codition. 
+      \item[-]It can gather the network information, and thus is very sensitive with the network change. 
+      \item[-]It is high available and tolerant to faults like machine failures, network outages, and data center outages.
+      \item[-]It help content delivery faster.
+  \end{enumerate}
+
+
+
+
+\section{K\&R, Chapter 1, Problems P8, P10, P18}
+\subsection{P8}
+Suppose users share a 3 Mbps link, ...\\
+{a)When circuit swithing is used, how many users can be supported?}
+Solution:
+  Although that each user transmits only 10 percent of the time, it should reserve the link all the time for them. Thus, the number of users that can be supported is that:
+    \begin{equation}
+    N_{users} = \frac{3 Mbps}{150 kbps} = 20
+    \end{equation}
+\\
+{b) For the reminder of the problem, suppose packet swithing is used. Find the probability that a given user is transmitting.}
+Solution:
+  $$\frac{1}{10}$$
+\\
+{c)Suppose there are 120 users. Find the probability that at any given time, exactly n users are transmitting simultaneously.}
+\\
+    Solution:
+  \begin{align}
+  & if (0 \leq n \leq 120)   P_{n\_transmits} =  \binom{120}{n} \big(\frac{1}{10}\big)^n \big(\frac{9}{10}\big)^{120-n}\\
+  & if (n<0) \qquad P_{n\_transmits} = 0\\
+  & if (n>120) \qquad P_{n\_transmits} =  0\\
+  \end{align}
+\\
+{d) Find the probability that there are 21 or more users transmitting simultaneously.}
+\\
+    Solution:
+  \begin{equation}
+  P = 1 - \sum^{20}_{k=0}\binom{120}{k} \big(\frac{1}{10}\big)^{10} \big(\frac{9}{10}\big)^{120-k}
+  \end{equation}
+
+
+\subsection{P10}
+Consider a packet of length L which begins at end system A and travels over three links to a destination end system. ...
+\\
+    Solution:
+%  \begin{equation}
+  \begin{align}
+  T_{total} &= \sum{\frac{L}{R_i}} + \sum{\frac{d_i}{s_i}} + d_{proc}\\
+     & = 3 * \frac{1500}{2*10^6/8} + \frac{(5000 + 4000 + 1000)*10^3}{2.5*10^8} + 2*3*10^{-3}\\
+     & = 64*10^{-3}s\\
+     &= 64ms
+  \end{align}
+%  \end{equation}
+
+\subsection{P18}
+Perform a Traceroute between source and destination on the same continent at three different hours of the day.\\
+a)\\
+b)\\
+c)\\
+d)\\
+
+
+
+
+
+
+\end{document}

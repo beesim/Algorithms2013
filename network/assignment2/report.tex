@@ -1,0 +1,45 @@
+%\documentclass[10pt, a4paper, twocolumn, fleqn]{article}
+\documentclass[10pt, a4paper, onecolumn, fleqn]{article}
+\usepackage{amsmath}
+\usepackage{geometry}
+%\geometry{top=3.5cm,bottom=3cm}
+%\geometry{left=2.5cm,right=2.8cm,top=3.5cm,bottom=3cm}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+\title{Homework $\sharp$2}
+\author{Li Jiaying}
+\maketitle
+
+\section*{2}
+Prove that in the p2p network Chord, if every node, say j,
+maintains a table of short cuts with m entries,
+in which the i-th entry points to the successor ($j+2^{(i-1)}) \mod 2^m$,
+then the lookup complexity of the network is O($\log n$),
+where n is the number of nodes in the network.
+
+
+Prove:
+
+First, n $<$ $2^m$, otherwise there must be at least one node
+which can not be research from others. (e.g. node $2^m$)
+
+As there is a $\mod 2^m$, we can look these nodes as a circle
+beginned from anyone. Thus the lookup process become that we pick up
+the beginner node(As each one can be the beginner), named S,
+then find a specific node, named Q, in the circle.
+
+We divide the whole circle into m parts, 
+with the i-th parts contains the nodes with number [$2^{i-1}$, $2^i$),
+and the first part just contains the beginner node S.
+
+So by the first step, we can get to know which group Q belongs to.
+And the group's length is at most $2^{m-1}$.
+So the next step we do the same thing, the maximun length become $2^{m-2}$.
+
+We can do this process iteratively until we find Q. And it will take less than or equal to m steps, which is also less than or equal to $\log n$.
+
+So the lookup complexity of the network is O($\log n$).
+
+
+\end{document}
