@@ -5,13 +5,6 @@
 #include<string.h>
 #include<time.h>
 
-#define TEST
-//#define TEST_BITS
-#define TEST_HEADER
-#define TEST_PACKET
-//#define OUTPUT
-
-#define MAX 1024
 
 struct pcap_file_header {
     unsigned int magic;
@@ -63,38 +56,16 @@ struct packet {
 	//char* content =  the bytes captured but left.
 };
 
-
-#ifdef OUTPUT
-int output_time(long tv_sec, long tv_usec)
-{
-    struct tm *ptr;
-    time_t lt = tv_sec;
-    char str[80];
-    ptr=localtime(&lt);
-    strftime(str,100,"%F %X",ptr);
-    printf("%s", str);
-    return 0;
-}
-
-inline void output_mac(char* MAC)
-{
-    printf("%x%x:", MAC[0]>>4&0xf, MAC[0]&0xf);
-    printf("%x%x:", MAC[1]>>4&0xf, MAC[1]&0xf);
-    printf("%x%x:", MAC[2]>>4&0xf, MAC[2]&0xf);
-    printf("%x%x:", MAC[3]>>4&0xf, MAC[3]&0xf);
-    printf("%x%x:", MAC[4]>>4&0xf, MAC[4]&0xf);
-    printf("%x%x", MAC[5]>>4&0xf, MAC[5]&0xf);
-}
-
-inline void output_ip(unsigned char* ip)
-{
-    printf("%u.%u.%u.%u", ip[0], ip[1], ip[2], ip[3]);
-}
-#else
-inline void output_time(long tv_sec, long tv_usec) {}
-inline int output_mac(char* MAC) {}
-inline int output_ip(unsigned char* ip) {}
-#endif
+struct ex_packet {
+    struct pcap_pkthdr pp;
+    struct ll_hdr lh;
+    struct ip_hdr ih;
+    struct tcp_hdr th;
+	int No;	// from 0 - infinity
+	int offset;
+    //...
+	//char* content =  the bytes captured but left.
+};
 
 
 #endif
