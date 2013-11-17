@@ -7,7 +7,7 @@
 #include "pkt_oprt.h"
 
 #define MAX 1024	// 1 M packet
-#define ONCE 1024	// 1 K packet
+#define ONCE 20480	// 1 K packet
 
 
 #define TEST
@@ -17,7 +17,8 @@
 #define OUTPUT
 
 //#define filename "./test/packet.pcap"
-#define filename "./test/packet1.pcap"
+//#define filename "./test/packet1.pcap"
+#define filename "./test/thunder_movie_yizuochengchi.pcap"
 
 	
 
