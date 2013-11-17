@@ -32,7 +32,7 @@ struct ll_hdr{
 };
 
 struct ip_hdr{
-    int overload[2];
+    char overload[8];
     char ttl;
     char protocol;
     unsigned short checksum;

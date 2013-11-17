@@ -7,7 +7,7 @@
 #include "pkt_oprt.h"
 
 #define MAX 1024	// 1 M packet
-#define ONCE 20480	// 1 K packet
+#define ONCE 204800	// 1 K packet
 
 
 #define TEST
@@ -18,7 +18,7 @@
 
 //#define filename "./test/packet.pcap"
 //#define filename "./test/packet1.pcap"
-#define filename "./test/thunder_movie_yizuochengchi.pcap"
+#define filename "./test/xunlei1.pcap"
 
 	
 
@@ -57,7 +57,7 @@ int main()
 
 	qsort(pkt, pktidx, sizeof (struct ex_packet), cmp_dst_ip);
 	qsort(pkt, pktidx, sizeof (struct ex_packet), cmp_src_ip);
-	qsort(pkt, pktidx, sizeof (struct ex_packet), cmp_time);
+//	qsort(pkt, pktidx, sizeof (struct ex_packet), cmp_time);
 	int i;
 	for (i = 0; i < pktidx; i++ ) {
 		output_pkt (pkt[i]);

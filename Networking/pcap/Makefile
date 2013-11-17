@@ -4,7 +4,7 @@ all:	DP
 	run
 
 DP:	main.c packet.h pkt_ostream.h pkt_oprt.h
-	g++ main.c -o DP
+	g++ main.c -o DP -g
 
 clean:
 	rm DP
